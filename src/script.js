@@ -1,4 +1,4 @@
-const TOKEN = `qr7awb4vb1CCx9FTsdKoii7672gi3CKapD4GRxV1`;
+const TOKEN = `qQL643bmhPHv7Z7eCdyUvZWkVnv8ruY0Ba7adV5O`;
 const PARAMETERS = `date_from=2021-10-26&key_by_date=true&limit=10`;
 
 const fetchCompany = (symbol) => {
@@ -47,4 +47,9 @@ const fetchData = (symbol = 'AMZN') => {
 
 window.onload = () => {
   fetchData();
+  const inputButton = document.getElementById('input-button');
+  inputButton.addEventListener('click', () => {
+    const inputSymbol = document.getElementById('input-symbol');
+    fetchData(inputSymbol.value);
+  });
 };

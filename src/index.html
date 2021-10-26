@@ -6,17 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock Data Monitor</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../node_modules/tailwindcss/dist/tailwind.css">
 </head>
-<body>
-  <header>
+<body class="bg-green-50 p-16 font-mono">
+<div class="container mx-auto">
+  <header class="text-center text-4xl">
     <h1>Stock Data Monitor</h1>
   </header>
-  <main>
-    <h2>Empresa: <span id="company"></span></h2>
-    <canvas id="volumeChart" width="150" height="150"></canvas>
-    <canvas id="minmaxChart" width="150" height="150"></canvas>
+  <main class="grid grid-cols-1 gap-5">
+    <div class="input-controls text-center">
+      <input type="text" id="input-symbol" placeholder="Insira um código" class="focus:underline focus:bg-green-100 px-4 py-2">
+      <button class="px-4 py-2 m-2 bg-green-400 rounded-lg" id="input-button">Buscar</button>
+    </div>
+    <div class="text-center text-2xl">
+      <h2>Empresa: <span id="company"></span></h2>
+    </div>
+    <div class="graphs grid grid-cols-2 gap-4">
+      <div class="bg-gray-50 px-4 py-2 rounded-md">
+        <canvas id="volumeChart" width="auto" height="auto"></canvas>
+      </div>
+      <div class="bg-gray-50 px-4 py-2 rounded-md">
+        <canvas id="minmaxChart" width="auto" height="auto"></canvas>
+      </div>
+    </div>
   </main>
-  <footer></footer>
+  <footer class="text-center bg-green-100 fixed bottom-0 left-0 right-0">
+    &copy; Airton Lopes, Israel Sant'Anna, Mariana Saraiva, 2021
+  </footer>
+</div>
   <script src="../node_modules/chart.js/dist/chart.js"></script>
   <script src="graph.js"></script>
   <script src="script.js">
