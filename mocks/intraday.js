@@ -1,4 +1,4 @@
-{
+const INTRADAY = {
   "meta": {
     "date_from": "2021-10-26",
     "date_to": "2021-10-26",
@@ -3361,3 +3361,5 @@
     ]
   }
 }
+
+module.exports = INTRADAY;

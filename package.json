@@ -19,5 +19,8 @@
   "homepage": "https://github.com/israelss/stockdatamonitor#readme",
   "devDependencies": {
     "jest": "^27.3.1"
+  },
+  "dependencies": {
+    "chart.js": "^3.6.0"
   }
 }
