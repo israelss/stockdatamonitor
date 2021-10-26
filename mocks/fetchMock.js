@@ -1,10 +1,12 @@
 const intradayJSON = require('./intraday.js');
-const realtimeJSON = require('./realtime.js')
-const TOKEN = `qr7awb4vb1CCx9FTsdKoii7672gi3CKapD4GRxV1`
+const realtimeJSON = require('./realtime.js');
+const TOKEN = `qr7awb4vb1CCx9FTsdKoii7672gi3CKapD4GRxV1`;
+const SYMBOL = `AMZN`;
+const PARAMETERS = `date_from=2021-10-26&key_by_date=true&limit=10`;
 
 const ENDPOINTS = {
-  REALTIME: `https://api.stockdata.org/v1/data/quote?symbols=AMZN&api_token=${TOKEN}`,
-  INTRADAY: `https://api.stockdata.org/v1/data/intraday?symbols=AMZN&date_from=2021-10-26&key_by_date=true&limit=10&api_token=${TOKEN}`,
+  REALTIME: `https://api.stockdata.org/v1/data/quote?symbols=${SYMBOL}&api_token=${TOKEN}`,
+  INTRADAY: `https://api.stockdata.org/v1/data/intraday?symbols=${SYMBOL}&api_token=${TOKEN}&${PARAMETERS}`,
 };
 
 const TIME_IN_MILLISECONDS = 200;
