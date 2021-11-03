@@ -1,8 +1,8 @@
 const TOKEN = `qQL643bmhPHv7Z7eCdyUvZWkVnv8ruY0Ba7adV5O`;
-const PARAMETERS = `date_from=2021-10-26&key_by_date=true&limit=10`;
+const PARAMETERS = `key_by_date=true&limit=10`;
 
 const fetchCompany = (symbol) => {
-  const REALTIME = `https://api.stockdata.org/v1/data/quote?symbols=${symbol}&api_token=${TOKEN}`;
+  const REALTIME = `https://api.stockdata.org/v1/data/quote?symbols=${ symbol }&api_token=${ TOKEN }`;
   fetch(REALTIME)
     .then((response) => response.json())
     .then((data) => {
@@ -14,13 +14,15 @@ const fetchCompany = (symbol) => {
 };
 
 const fetchValues = (symbol) => {
-  const INTRADAY = `https://api.stockdata.org/v1/data/intraday?symbols=${symbol}&api_token=${TOKEN}&${PARAMETERS}`;
+
+  const date = `date-from=${ new Date.now() }`;
+  const INTRADAY = `https://api.stockdata.org/v1/data/intraday?symbols=${ symbol }&api_token=${ TOKEN }&${ PARAMETERS }&${ date }`;
 
   fetch(INTRADAY)
     .then((response) => response.json())
     .then((response) => {
       const data = Object.values(response.data)
-        .filter((_, index) => index % 10 === 0)
+        .filter((_, index) => index % 60 === 0)
         .reduce((arrayObj, curr) => {
           if (!arrayObj['volume']) arrayObj['volume'] = [];
           if (!arrayObj['high']) arrayObj['high'] = [];
@@ -33,7 +35,7 @@ const fetchValues = (symbol) => {
 
       const labels = Object.keys(response.data)
         .reverse()
-        .filter((_, index) => index % 10 === 0)
+        .filter((_, index) => index % 60 === 0)
         .map((label) => label.match(/(?<minuto>\d{2}:\d{2}:\d{2})/).groups.minuto);
 
       paintGraph({ data, labels, graphId: 'volumeChart', dataKeyArray: ['volume'] });
@@ -53,3 +55,20 @@ window.onload = () => {
     fetchData(inputSymbol.value);
   });
 };
+
+// 2 - Estudar a API
+// 2.1 - 
+
+// 5 - Organizar
+// 5.1 - Refazer usando React
+
+// 1 - Implementar busca pelo período especificado até agora
+// 1.1 - Input de data (html)
+// 1.2 - Implementar a lógica (js)
+// 1.3 - 
+
+// 3 - Estilizar (css)
+
+// 4 - Autenticação
+// 4.1 - Form de login - pegar o token
+// 4.2 - Armazenar o token
